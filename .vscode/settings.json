@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/e5b65291-4b4d-4255-9838-973c7d9a0044/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/react-example-deploy-test",
+    "appService.deploySubpath": "build"
+}
