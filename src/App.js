@@ -1,7 +1,30 @@
 import logo from './logo.svg';
 import './App.css';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 function App() {
+  const [questions, setQuestions] = useState({});
+
+  useEffect(async () => {
+    const result = await axios(
+      'http://django-example-demo.azurewebsites.net/polls/questiones/',
+    );
+
+    setQuestions(result.data);
+  }, []);
+
+  const renderQuestions = () => {
+    const questionsList = []
+    console.log(questions)
+    for (const q of questions) {
+      console.log(q)
+      questionsList.push(<p><b>{q.question_text}</b>: {Date(q.pub_date).toLocaleUpperCase()}</p>)
+    }
+
+    return questionsList
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -15,8 +38,9 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React with me
+          Innovate FPGA
         </a>
+        <div>{renderQuestions()}</div>
       </header>
     </div>
   );
