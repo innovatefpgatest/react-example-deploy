@@ -12,13 +12,17 @@ function App() {
     );
 
     setQuestions(result.data);
-  });
+  }, []);
 
   const renderQuestions = () => {
     const questionsList = []
-    for (const q in questions) {
-      questionsList.push(<div><b>{q.question_text}</b>: {Date(q.pub_date).toLocaleDateString()}</div>)
+    console.log(questions)
+    for (const q of questions) {
+      console.log(q)
+      questionsList.push(<p><b>{q.question_text}</b>: {Date(q.pub_date).toLocaleUpperCase()}</p>)
     }
+
+    return questionsList
   }
 
   return (
@@ -36,8 +40,8 @@ function App() {
         >
           Innovate FPGA
         </a>
+        <div>{renderQuestions()}</div>
       </header>
-      <b>{renderQuestions()}</b>
     </div>
   );
 }
