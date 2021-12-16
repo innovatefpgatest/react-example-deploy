@@ -1,7 +1,26 @@
 import logo from './logo.svg';
 import './App.css';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 function App() {
+  const [questions, setQuestions] = useState({});
+
+  useEffect(async () => {
+    const result = await axios(
+      'http://django-example-demo.azurewebsites.net/polls/questiones/',
+    );
+
+    setQuestions(result.data);
+  });
+
+  const renderQuestions = () => {
+    const questionsList = []
+    for (const q in questions) {
+      questionsList.push(<div><b>{q.question_text}</b>: {Date(q.pub_date).toLocaleDateString()}</div>)
+    }
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -18,6 +37,7 @@ function App() {
           Innovate FPGA
         </a>
       </header>
+      <b>{renderQuestions()}</b>
     </div>
   );
 }
