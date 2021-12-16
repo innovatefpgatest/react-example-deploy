@@ -16,8 +16,10 @@ function App() {
 
   const renderQuestions = () => {
     const questionsList = []
-    for (const q of questions) {
-      questionsList.push(<p><b>{q.question_text}</b>: {Date(q.pub_date).toLocaleUpperCase()}</p>)
+    if (questions.length) {
+      for (const q of questions) {
+        questionsList.push(<p><b>{q.question_text}</b>: {Date(q.pub_date).toLocaleUpperCase()}</p>)
+      }
     }
 
     return questionsList
@@ -38,7 +40,7 @@ function App() {
         >
           Questions
         </a>
-        <div>{renderQuestions}</div>
+        <div>{renderQuestions()}</div>
       </header>
     </div>
   );
