@@ -8,7 +8,7 @@ function App() {
 
   useEffect(async () => {
     const result = await axios(
-      'http://django-example-demo.azurewebsites.net/polls/questiones/',
+      'https://django-example-demo.azurewebsites.net/polls/questiones/',
     );
 
     setQuestions(result.data);
@@ -16,13 +16,11 @@ function App() {
 
   const renderQuestions = () => {
     const questionsList = []
-    console.log(questions)
     for (const q of questions) {
-      console.log(q)
       questionsList.push(<p><b>{q.question_text}</b>: {Date(q.pub_date).toLocaleUpperCase()}</p>)
     }
 
-    return questionsList
+    return questionsList || <div/>
   }
 
   return (
@@ -40,7 +38,7 @@ function App() {
         >
           Innovate FPGA
         </a>
-        <div>{renderQuestions()}</div>
+        <div>{renderQuestions}</div>
       </header>
     </div>
   );
