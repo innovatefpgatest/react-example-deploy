@@ -20,7 +20,7 @@ function App() {
       questionsList.push(<p><b>{q.question_text}</b>: {Date(q.pub_date).toLocaleUpperCase()}</p>)
     }
 
-    return questionsList || <div/>
+    return questionsList
   }
 
   return (
@@ -32,11 +32,11 @@ function App() {
         </p>
         <a
           className="App-link"
-          href="https://reactjs.org"
+          href="https://django-example-demo.azurewebsites.net/polls/questiones/"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Innovate FPGA
+          Questions
         </a>
         <div>{renderQuestions}</div>
       </header>
