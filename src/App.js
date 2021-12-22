@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import moment from 'moment';
 
 function App() {
   const [questions, setQuestions] = useState({});
@@ -18,7 +19,7 @@ function App() {
     const questionsList = []
     if (questions.length) {
       for (const q of questions) {
-        questionsList.push(<p><b>{q.question_text}</b>: {Date(q.pub_date).toLocaleUpperCase()}</p>)
+        questionsList.push(<p><b>{q.question_text}</b>: {moment(q.pub_date).format('DD-MM-YYYY HH:mm:ss')}</p>)
       }
     }
 
